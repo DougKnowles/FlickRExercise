@@ -223,6 +223,7 @@
 				TargetAttributes = {
 					DB3A1D151C7DE65700420764 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = J3HVSJZSWH;
 					};
 					DB3A1D291C7DE65700420764 = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -479,10 +480,13 @@
 			baseConfigurationReference = C31FAB2CEE5609C3B16ED642 /* Pods-RPExercise.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = RPExercise/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.seleneassociates.RPExercise;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -491,10 +495,13 @@
 			baseConfigurationReference = 9E9778BED84FB38570D38777 /* Pods-RPExercise.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = RPExercise/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.seleneassociates.RPExercise;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

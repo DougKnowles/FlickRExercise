@@ -92,13 +92,16 @@ class ViewController: UIViewController {
 			return
 		}
 		print( "TODO: load images from \(self.currentLocation)" )
+		let location = (self.currentLocation!.coordinate.latitude, self.currentLocation!.coordinate.longitude)
+		self.loadImagesFromLocation(location)
 	}
 	
-	func loadImagesFromLocation() {
-		
+	func loadImagesFromLocation(location:(Double, Double)) {
+		self.flickrAPI.imageSpecsForLocation(location) { (specs) -> Void in
+			print( "Done." )
+		}
 	}
 	
-
 }
 
 extension ViewController : CLLocationManagerDelegate {
@@ -126,7 +129,7 @@ extension ViewController : CLLocationManagerDelegate {
 	func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 		print( "Updating location at \(NSDate())..." )
 		self.currentLocation = locations.last
-		self.loadImagesFromLocation()
+		self.loadImagesFromCurrentLocation()
 	}
 	
 }

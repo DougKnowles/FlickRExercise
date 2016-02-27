@@ -13,6 +13,9 @@ public class FlickR {
 	
 	public var authenticated : Bool
 	
+	let api_key = "4b6a291a5e6c2d7253500fa094cfca11"
+	let api_secret = "d430ab926db55270"
+	
 	let oAuthSwift : OAuth1Swift
 	var credentials : OAuthSwiftCredential?
 	var oauth_token : String?
@@ -20,10 +23,13 @@ public class FlickR {
 	var userId : String?
 	var userName : String?
 	
+	let urlString = "https://api.flickr.com/services/rest/"
+	let locationDelta : Double = 0.5
+	
 	public init() {
 		oAuthSwift = OAuth1Swift.init(
-			consumerKey: "4b6a291a5e6c2d7253500fa094cfca11",
-			consumerSecret: "d430ab926db55270",
+			consumerKey: api_key,
+			consumerSecret: api_secret,
 			requestTokenUrl: "https://www.flickr.com/services/oauth/request_token",
 			authorizeUrl:    "https://www.flickr.com/services/oauth/authorize",
 			accessTokenUrl:  "https://www.flickr.com/services/oauth/access_token")
@@ -46,9 +52,64 @@ public class FlickR {
 		})
 	}
 	
-	public func imageSpecsForLocation(location : (Double, Double), completion: (specs: [AnyObject]) -> Void) -> Void {
-		
+	public func imageSpecsForLocationTheDoesNotWork(location : (Double, Double), completion: (specs: [AnyObject]) -> Void) -> Void {
+		var parameters = [String : String]()
+		parameters["method"] = "flickr.photos.geo.photosForLocation"
+		parameters["api_key"] = self.api_key
+		parameters["lat"] = String(location.0)
+		parameters["lon"] = String(location.1)
+		parameters["accuracy"] = String(1)		// World level is 1, Country is ~3, Region ~6, City ~11, Street ~16. Current range is 1-16
+		parameters["extras"] = "description, owner_name, date_taken"
+		parameters["per_page"] = String(4)
+		parameters["page"] = String(1)
+		parameters["format"] = "json"
+		parameters["nojsoncallback"] = "1"
+		oAuthSwift.client.get(urlString, parameters: parameters, success: { (data, response) -> Void in
+			let dataStr = NSString.init(data: data, encoding: NSUTF8StringEncoding)
+			print( "Success: \(dataStr)")
+			
+			},
+			failure: { (error) -> Void in
+				print(error.localizedDescription)
+				
+		})
 	}
+	
+	public func imageSpecsForLocation(location : (Double, Double), completion: (specs: [AnyObject]) -> Void) -> Void {
+		var parameters = [String : String]()
+		parameters["method"] = "flickr.photos.search"
+		parameters["api_key"] = self.api_key
+		
+//		let minLat = location.0 - locationDelta
+//		let minLon = location.1 - locationDelta
+//		let maxLat = location.0 + locationDelta
+//		let maxLon = location.1 + locationDelta
+//		parameters["bbox"] = "\(minLon),\(minLat),\(maxLon),\(maxLat)"
+
+		parameters["lat"] = String(location.0)
+		parameters["lon"] = String(location.1)
+		parameters["accuracy"] = String(1)		// World level is 1, Country is ~3, Region ~6, City ~11, Street ~16. Current range is 1-16
+		parameters["content_type"] = "1"		// just photos
+		parameters["extras"] = "description, owner_name, date_taken"
+		parameters["per_page"] = String(4)
+		parameters["page"] = String(1)
+		parameters["format"] = "json"
+		parameters["nojsoncallback"] = "1"
+		oAuthSwift.client.get(urlString, parameters: parameters, success: { (data, response) -> Void in
+			do {
+				let jsonObj = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions())
+				print( "JSON: \(jsonObj)" )
+			}
+			catch {
+				print( "Something broke." )
+			}
+			},
+			failure: { (error) -> Void in
+				print(error.localizedDescription)
+				
+		})
+	}
+
 	
 	
 	
