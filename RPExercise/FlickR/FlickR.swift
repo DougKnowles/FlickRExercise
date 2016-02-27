@@ -46,4 +46,10 @@ public class FlickR {
 		})
 	}
 	
+	public func imageSpecsForLocation(location : (Double, Double), completion: (specs: [AnyObject]) -> Void) -> Void {
+		
+	}
+	
+	
+	
 }
