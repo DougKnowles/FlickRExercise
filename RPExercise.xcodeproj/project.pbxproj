@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BCB3631887CB58EDC86F80A8 /* Pods_RPExercise.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7D8363B54FC494B7B834AD0 /* Pods_RPExercise.framework */; };
 		DB3A1D1A1C7DE65700420764 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3A1D191C7DE65700420764 /* AppDelegate.swift */; };
 		DB3A1D1C1C7DE65700420764 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3A1D1B1C7DE65700420764 /* ViewController.swift */; };
 		DB3A1D1F1C7DE65700420764 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB3A1D1D1C7DE65700420764 /* Main.storyboard */; };
@@ -14,6 +15,7 @@
 		DB3A1D241C7DE65700420764 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB3A1D221C7DE65700420764 /* LaunchScreen.storyboard */; };
 		DB3A1D2F1C7DE65700420764 /* RPExerciseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3A1D2E1C7DE65700420764 /* RPExerciseTests.swift */; };
 		DB3A1D3A1C7DE65700420764 /* RPExerciseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3A1D391C7DE65700420764 /* RPExerciseUITests.swift */; };
+		DB3A1D481C7DE83400420764 /* FlickR.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3A1D471C7DE83400420764 /* FlickR.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +36,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9E9778BED84FB38570D38777 /* Pods-RPExercise.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RPExercise.release.xcconfig"; path = "Pods/Target Support Files/Pods-RPExercise/Pods-RPExercise.release.xcconfig"; sourceTree = "<group>"; };
+		A7D8363B54FC494B7B834AD0 /* Pods_RPExercise.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RPExercise.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C31FAB2CEE5609C3B16ED642 /* Pods-RPExercise.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RPExercise.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RPExercise/Pods-RPExercise.debug.xcconfig"; sourceTree = "<group>"; };
 		DB3A1D161C7DE65700420764 /* RPExercise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RPExercise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB3A1D191C7DE65700420764 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DB3A1D1B1C7DE65700420764 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +52,7 @@
 		DB3A1D351C7DE65700420764 /* RPExerciseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RPExerciseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB3A1D391C7DE65700420764 /* RPExerciseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPExerciseUITests.swift; sourceTree = "<group>"; };
 		DB3A1D3B1C7DE65700420764 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB3A1D471C7DE83400420764 /* FlickR.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlickR.swift; path = FlickR/FlickR.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCB3631887CB58EDC86F80A8 /* Pods_RPExercise.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +81,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		564D24AF7352C7714DD8B820 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C31FAB2CEE5609C3B16ED642 /* Pods-RPExercise.debug.xcconfig */,
+				9E9778BED84FB38570D38777 /* Pods-RPExercise.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		DB3A1D0D1C7DE65700420764 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +97,8 @@
 				DB3A1D2D1C7DE65700420764 /* RPExerciseTests */,
 				DB3A1D381C7DE65700420764 /* RPExerciseUITests */,
 				DB3A1D171C7DE65700420764 /* Products */,
+				564D24AF7352C7714DD8B820 /* Pods */,
+				DEAFCE4730219ABA1FE67299 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,6 +121,7 @@
 				DB3A1D201C7DE65700420764 /* Assets.xcassets */,
 				DB3A1D221C7DE65700420764 /* LaunchScreen.storyboard */,
 				DB3A1D251C7DE65700420764 /* Info.plist */,
+				DB3A1D471C7DE83400420764 /* FlickR.swift */,
 			);
 			path = RPExercise;
 			sourceTree = "<group>";
@@ -125,6 +144,14 @@
 			path = RPExerciseUITests;
 			sourceTree = "<group>";
 		};
+		DEAFCE4730219ABA1FE67299 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A7D8363B54FC494B7B834AD0 /* Pods_RPExercise.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +159,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DB3A1D3E1C7DE65700420764 /* Build configuration list for PBXNativeTarget "RPExercise" */;
 			buildPhases = (
+				EF860C5CD5AC2B7D2B708FE8 /* Check Pods Manifest.lock */,
 				DB3A1D121C7DE65700420764 /* Sources */,
 				DB3A1D131C7DE65700420764 /* Frameworks */,
 				DB3A1D141C7DE65700420764 /* Resources */,
+				F2B81BEC47727FA2ADB983C0 /* Embed Pods Frameworks */,
+				9E93DA4541CFACF8BB6C9675 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -251,12 +281,61 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		9E93DA4541CFACF8BB6C9675 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RPExercise/Pods-RPExercise-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EF860C5CD5AC2B7D2B708FE8 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F2B81BEC47727FA2ADB983C0 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RPExercise/Pods-RPExercise-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		DB3A1D121C7DE65700420764 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				DB3A1D1C1C7DE65700420764 /* ViewController.swift in Sources */,
+				DB3A1D481C7DE83400420764 /* FlickR.swift in Sources */,
 				DB3A1D1A1C7DE65700420764 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -397,6 +476,7 @@
 		};
 		DB3A1D3F1C7DE65700420764 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C31FAB2CEE5609C3B16ED642 /* Pods-RPExercise.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = RPExercise/Info.plist;
@@ -408,6 +488,7 @@
 		};
 		DB3A1D401C7DE65700420764 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E9778BED84FB38570D38777 /* Pods-RPExercise.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = RPExercise/Info.plist;
@@ -484,6 +565,7 @@
 				DB3A1D401C7DE65700420764 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DB3A1D411C7DE65700420764 /* Build configuration list for PBXNativeTarget "RPExerciseTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +574,7 @@
 				DB3A1D431C7DE65700420764 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DB3A1D441C7DE65700420764 /* Build configuration list for PBXNativeTarget "RPExerciseUITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +583,7 @@
 				DB3A1D461C7DE65700420764 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

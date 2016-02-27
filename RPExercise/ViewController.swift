@@ -9,10 +9,13 @@
 import UIKit
 
 class ViewController: UIViewController {
+	
+	var flickrAPI : FlickR?
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
+		self.flickrAPI = FlickR()
 	}
 
 	override func didReceiveMemoryWarning() {
