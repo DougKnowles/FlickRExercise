@@ -11,23 +11,22 @@ import OAuthSwift
 
 public class FlickR {
 	
-	let oAuthSwift : OAuth2Swift
+	let oAuthSwift : OAuth1Swift
 	
 	public init() {
-		oAuthSwift = OAuth2Swift.init(
+		oAuthSwift = OAuth1Swift.init(
 			consumerKey: "4b6a291a5e6c2d7253500fa094cfca11",
 			consumerSecret: "d430ab926db55270",
-			authorizeUrl: "https://www.flickr.com/services/oauth/authorize",
-			responseType: "token")
-		oAuthSwift.authorizeWithCallbackURL(
-			NSURL(string: "oauth-swift://oauth-callback/flickr")!,
-			scope: "",
-			state: "",
-			success: { (credential, response, parameters) -> Void in
-				print( "FlickR auth success: \(credential), \(response), \(parameters)" )
-			}) { (error) -> Void in
-				print( "FlickR auth error: \(error)" )
-		}
+			requestTokenUrl: "https://www.flickr.com/services/oauth/request_token",
+			authorizeUrl:    "https://www.flickr.com/services/oauth/authorize",
+			accessTokenUrl:  "https://www.flickr.com/services/oauth/access_token")
+		oAuthSwift.authorizeWithCallbackURL( NSURL(string: "oauth-swift://oauth-callback/flickr")!, success: { credential, response, parameters in
+			print( "credential: \(credential), response: \(response), parameters: \(parameters)" )
+//				self.testFlickr(oauthswift, consumerKey: serviceParameters["consumerKey"]!)
+			},
+			failure: { error in
+				print(error.localizedDescription)
+		})
 	}
 	
 }
