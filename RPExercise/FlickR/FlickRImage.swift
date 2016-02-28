@@ -60,7 +60,6 @@ public class FlickRImage {
 					completion(image: nil)
 					return
 			}
-			print( "Successfully downloaded image \(fetchedImage)" )
 			completion(image: fetchedImage)
 		}
 		imageTask.resume()

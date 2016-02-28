@@ -84,7 +84,7 @@ public class FlickR {
 		parameters["accuracy"] = String(1)		// World level is 1, Country is ~3, Region ~6, City ~11, Street ~16. Current range is 1-16
 		parameters["content_type"] = "1"		// just photos
 		parameters["extras"] = "description, owner_name, date_taken"
-		parameters["per_page"] = String(4)
+		parameters["per_page"] = String(200)
 		parameters["page"] = String(1)
 		parameters["format"] = "json"
 		parameters["nojsoncallback"] = "1"
@@ -99,13 +99,11 @@ public class FlickR {
 					print( "Failed to convert response JSON to object")
 					return
 				}
-				print( "photosResult (\(photosResult.count) of \(total):" )
-				print( "photos \(photos)" )
 				var photoList : [FlickRImage] = [FlickRImage]()
 				for photoRef in photos {
 					let imageObj = FlickRImage(description: photoRef)
 					imageObj.loadImage(false, completion: { (image) -> Void in
-						print( "Image preload returned \(image)" )
+
 					})
 					photoList += [imageObj]
 				}

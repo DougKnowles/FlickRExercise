@@ -9,13 +9,16 @@
 import UIKit
 import CoreLocation
 
-class ViewController: UIViewController {
+let reuseIdentifier = "photoCell"
+
+class ViewController: UICollectionViewController {
 	
 	var flickrAPI : FlickR = FlickR()
 	var locationManager : CLLocationManager = CLLocationManager()
+	var imageSpecs : [FlickRImage]?
+	let sectionInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
 	var currentLocation : CLLocation? {
 		didSet {
-			print( "TODO: load photos for new location" )
 			self.loadImagesFromCurrentLocation()
 		}
 	}
@@ -30,7 +33,6 @@ class ViewController: UIViewController {
 			switch locationStatus {
 			case .NotDetermined:
 				// TODO: advise user of intent to ask permission
-				print( "Requesting location authorization" )
 				self.locationManager.requestWhenInUseAuthorization()
 				
 			case .Restricted:
@@ -50,8 +52,6 @@ class ViewController: UIViewController {
 
 		// authenticate with FlickR before loading images
 		self.flickrAPI.authenticate({ () -> Void in
-			let response = (self.flickrAPI.authenticated ? "yes" : "no")
-			print( "FlickR set up? \(response)" )
 			self.loadImagesFromCurrentLocation()
 		})
 	}
@@ -72,7 +72,6 @@ class ViewController: UIViewController {
 	}
 	
 	func startTrackingLocation() {
-		print( "Tracking location..." )
 		self.locationManager.distanceFilter = CLLocationDistance(500)	// filtering to 0.5km for now
 		self.locationManager.startUpdatingLocation()
 	}
@@ -83,23 +82,102 @@ class ViewController: UIViewController {
 
 	func loadImagesFromCurrentLocation() {
 		if (self.currentLocation == nil) {
-			print( "Location not yet determined; asking again" )
+			// Location not yet determined; ask again
 			self.locationManager.requestWhenInUseAuthorization()
 			return
 		}
 		if (!self.flickrAPI.authenticated) {
-			print( "FlickR API not yet authorized" )
+			// FlickR API not yet authorized
 			return
 		}
-		print( "TODO: load images from \(self.currentLocation)" )
 		let location = (self.currentLocation!.coordinate.latitude, self.currentLocation!.coordinate.longitude)
 		self.loadImagesFromLocation(location)
 	}
 	
 	func loadImagesFromLocation(location:(Double, Double)) {
 		self.flickrAPI.imageSpecsForLocation(location) { (specs) -> Void in
-			print( "Done." )
+			self.imageSpecs = specs
+			dispatch_async(dispatch_get_main_queue(), { () -> Void in
+				self.collectionView?.reloadData()
+			})
 		}
+	}
+	
+	// MARK: UICollectionViewDataSource
+	
+	override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+		return 1
+	}
+	
+	
+	override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+		if let specs = self.imageSpecs {
+			return specs.count
+		}
+		return 0
+	}
+	
+	override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+		let cell = collectionView.dequeueReusableCellWithReuseIdentifier("photoCell", forIndexPath: indexPath) as! CollectionImageCell
+		
+		// Configure the cell
+		cell.imageObj = self.imageSpecs![indexPath.row]
+		
+		return cell
+	}
+	
+	func collectionView(collectionView: UICollectionView,
+		layout collectionViewLayout: UICollectionViewLayout,
+		sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+			guard let imageSpec = self.imageSpecs?[indexPath.row],
+				let image = imageSpec.smallImage
+				else {
+					return CGSize(width: 120, height: 120)
+			}
+			return image.size
+	}
+	
+	func collectionView(collectionView: UICollectionView,
+		layout collectionViewLayout: UICollectionViewLayout,
+		insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+			return sectionInsets
+	}
+	
+	// MARK: UICollectionViewDelegate
+	
+	//    // Uncomment this method to specify if the specified item should be highlighted during tracking
+	//    override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+	//        return true
+	//    }
+	//
+	//    // Uncomment this method to specify if the specified item should be selected
+	//    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+	//		print("Should select \(indexPath)?")
+	//        return true
+	//    }
+	
+	/*
+	// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
+	override func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+	return false
+	}
+	
+	override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
+	return false
+	}
+	
+	override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
+	
+	}
+	*/
+	
+	override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+		print("Should perform \(identifier)?")
+		return true
+	}
+	
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		print("Prepare for \(segue.identifier)")
 	}
 	
 }
@@ -107,11 +185,10 @@ class ViewController: UIViewController {
 extension ViewController : CLLocationManagerDelegate {
 	
 	func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-		print( "Location authorization status changed to \(status)" )
 		switch status {
 		case .NotDetermined:
 			// shouldn't happen, unless user remove authorization in settings
-			print( "Re-requesting authorization" )
+			// Re-requesting authorization
 			self.locationManager.requestWhenInUseAuthorization()
 			
 		case .Restricted:
