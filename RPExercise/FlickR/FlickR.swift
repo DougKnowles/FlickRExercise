@@ -75,17 +75,10 @@ public class FlickR {
 		})
 	}
 	
-	public func imageSpecsForLocation(location : (Double, Double), completion: (specs: [AnyObject]) -> Void) -> Void {
+	public func imageSpecsForLocation(location : (Double, Double), completion: (specs: [FlickRImage]?) -> Void) -> Void {
 		var parameters = [String : String]()
 		parameters["method"] = "flickr.photos.search"
 		parameters["api_key"] = self.api_key
-		
-//		let minLat = location.0 - locationDelta
-//		let minLon = location.1 - locationDelta
-//		let maxLat = location.0 + locationDelta
-//		let maxLon = location.1 + locationDelta
-//		parameters["bbox"] = "\(minLon),\(minLat),\(maxLon),\(maxLat)"
-
 		parameters["lat"] = String(location.0)
 		parameters["lon"] = String(location.1)
 		parameters["accuracy"] = String(1)		// World level is 1, Country is ~3, Region ~6, City ~11, Street ~16. Current range is 1-16
@@ -97,16 +90,35 @@ public class FlickR {
 		parameters["nojsoncallback"] = "1"
 		oAuthSwift.client.get(urlString, parameters: parameters, success: { (data, response) -> Void in
 			do {
-				let jsonObj = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions())
-				print( "JSON: \(jsonObj)" )
+				guard let jsonObj : AnyObject = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()),
+					let jsonDict = jsonObj as? [String: AnyObject],
+					let photosResult = jsonDict["photos"] as? [String: AnyObject],
+					let total : Int = Int(photosResult["total"] as! String),
+					let photos = photosResult["photo"] as? [[String: AnyObject]]
+				else {
+					print( "Failed to convert response JSON to object")
+					return
+				}
+				print( "photosResult (\(photosResult.count) of \(total):" )
+				print( "photos \(photos)" )
+				var photoList : [FlickRImage] = [FlickRImage]()
+				for photoRef in photos {
+					let imageObj = FlickRImage(description: photoRef)
+					imageObj.loadImage(false, completion: { (image) -> Void in
+						print( "Image preload returned \(image)" )
+					})
+					photoList += [imageObj]
+				}
+				completion(specs: photoList)
 			}
 			catch {
 				print( "Something broke." )
+				completion(specs: nil)
 			}
 			},
 			failure: { (error) -> Void in
 				print(error.localizedDescription)
-				
+				completion(specs: nil)
 		})
 	}
 

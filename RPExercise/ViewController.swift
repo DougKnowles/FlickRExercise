@@ -117,7 +117,7 @@ extension ViewController : CLLocationManagerDelegate {
 		case .Restricted:
 			fallthrough
 		case .Denied:
-			print( "TODO: handle denial of access to location" )
+			print( "TODO: handle denial of access to location data" )
 			
 		case .AuthorizedWhenInUse:
 			fallthrough

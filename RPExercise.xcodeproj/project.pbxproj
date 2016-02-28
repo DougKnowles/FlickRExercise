@@ -16,6 +16,7 @@
 		DB3A1D2F1C7DE65700420764 /* RPExerciseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3A1D2E1C7DE65700420764 /* RPExerciseTests.swift */; };
 		DB3A1D3A1C7DE65700420764 /* RPExerciseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3A1D391C7DE65700420764 /* RPExerciseUITests.swift */; };
 		DB3A1D481C7DE83400420764 /* FlickR.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3A1D471C7DE83400420764 /* FlickR.swift */; };
+		DBB87C1B1C826F2000414042 /* FlickRImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB87C1A1C826F2000414042 /* FlickRImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		DB3A1D391C7DE65700420764 /* RPExerciseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPExerciseUITests.swift; sourceTree = "<group>"; };
 		DB3A1D3B1C7DE65700420764 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB3A1D471C7DE83400420764 /* FlickR.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlickR.swift; path = FlickR/FlickR.swift; sourceTree = "<group>"; };
+		DBB87C1A1C826F2000414042 /* FlickRImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlickRImage.swift; path = FlickR/FlickRImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 				DB3A1D221C7DE65700420764 /* LaunchScreen.storyboard */,
 				DB3A1D251C7DE65700420764 /* Info.plist */,
 				DB3A1D471C7DE83400420764 /* FlickR.swift */,
+				DBB87C1A1C826F2000414042 /* FlickRImage.swift */,
 			);
 			path = RPExercise;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 			files = (
 				DB3A1D1C1C7DE65700420764 /* ViewController.swift in Sources */,
 				DB3A1D481C7DE83400420764 /* FlickR.swift in Sources */,
+				DBB87C1B1C826F2000414042 /* FlickRImage.swift in Sources */,
 				DB3A1D1A1C7DE65700420764 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
