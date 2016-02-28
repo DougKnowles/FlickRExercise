@@ -204,9 +204,12 @@ extension ViewController : CLLocationManagerDelegate {
 	}
 	
 	func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-		print( "Updating location at \(NSDate())..." )
-		self.currentLocation = locations.last
-		self.loadImagesFromCurrentLocation()
+		if let newLocation = locations.last {
+			if (self.currentLocation == nil) || (newLocation.distanceFromLocation(self.currentLocation!) > 500.0) {
+				self.currentLocation = newLocation
+			}
+			self.loadImagesFromCurrentLocation()
+		}
 	}
 	
 }
