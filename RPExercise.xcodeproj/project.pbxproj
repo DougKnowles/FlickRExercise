@@ -18,6 +18,7 @@
 		DB3A1D481C7DE83400420764 /* FlickR.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3A1D471C7DE83400420764 /* FlickR.swift */; };
 		DBB87C1B1C826F2000414042 /* FlickRImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB87C1A1C826F2000414042 /* FlickRImage.swift */; };
 		DBB87C201C835BA400414042 /* CollectionImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB87C1F1C835BA400414042 /* CollectionImageCell.swift */; };
+		DBB87C221C83964600414042 /* SingleImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB87C211C83964600414042 /* SingleImageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		DB3A1D471C7DE83400420764 /* FlickR.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlickR.swift; path = FlickR/FlickR.swift; sourceTree = "<group>"; };
 		DBB87C1A1C826F2000414042 /* FlickRImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlickRImage.swift; path = FlickR/FlickRImage.swift; sourceTree = "<group>"; };
 		DBB87C1F1C835BA400414042 /* CollectionImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionImageCell.swift; sourceTree = "<group>"; };
+		DBB87C211C83964600414042 /* SingleImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleImageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 				DB3A1D191C7DE65700420764 /* AppDelegate.swift */,
 				DB3A1D1B1C7DE65700420764 /* ViewController.swift */,
 				DBB87C1F1C835BA400414042 /* CollectionImageCell.swift */,
+				DBB87C211C83964600414042 /* SingleImageViewController.swift */,
 				DB3A1D1D1C7DE65700420764 /* Main.storyboard */,
 				DB3A1D201C7DE65700420764 /* Assets.xcassets */,
 				DB3A1D221C7DE65700420764 /* LaunchScreen.storyboard */,
@@ -345,6 +348,7 @@
 				DBB87C201C835BA400414042 /* CollectionImageCell.swift in Sources */,
 				DB3A1D481C7DE83400420764 /* FlickR.swift in Sources */,
 				DBB87C1B1C826F2000414042 /* FlickRImage.swift in Sources */,
+				DBB87C221C83964600414042 /* SingleImageViewController.swift in Sources */,
 				DB3A1D1A1C7DE65700420764 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

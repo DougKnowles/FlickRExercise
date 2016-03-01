@@ -10,24 +10,24 @@ import UIKit
 
 public class FlickRImage {
 	
-	let description : [String: AnyObject]
+	let dictionary : [String: AnyObject]
 	var smallImage : UIImage?
 	var largeImage : UIImage?
 	
 	public init(description: [String: AnyObject]) {
-		self.description = description
+		self.dictionary = description
 	}
 	
 	func urlForImage(large: Bool) -> NSURL? {
-		guard let farm_id = self.description["farm"],
-			let server_id = self.description["server"],
-			let photo_id = self.description["id"],
-			let secret = self.description["secret"]
+		guard let farm_id = self.dictionary["farm"],
+			let server_id = self.dictionary["server"],
+			let photo_id = self.dictionary["id"],
+			let secret = self.dictionary["secret"]
 			else {
 				print( "Failed to construct URL for image" )
 				return nil
 		}
-		let size : String = large ? "k" : "n"
+		let size : String = large ? "b" : "n"
 		let urlString = "https://farm\(farm_id).staticflickr.com/\(server_id)/\(photo_id)_\(secret)_\(size).jpg"
 		return NSURL(string: urlString)
 	}

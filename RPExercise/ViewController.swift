@@ -13,7 +13,6 @@ let reuseIdentifier = "photoCell"
 
 class ViewController: UICollectionViewController {
 	
-	var flickrAPI : FlickR = FlickR()
 	var locationManager : CLLocationManager = CLLocationManager()
 	var imageSpecs : [FlickRImage]?
 	let sectionInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
@@ -51,7 +50,7 @@ class ViewController: UICollectionViewController {
 		}
 
 		// authenticate with FlickR before loading images
-		self.flickrAPI.authenticate({ () -> Void in
+		FlickR.sharedInstance.authenticate({ () -> Void in
 			self.loadImagesFromCurrentLocation()
 		})
 	}
@@ -86,7 +85,7 @@ class ViewController: UICollectionViewController {
 			self.locationManager.requestWhenInUseAuthorization()
 			return
 		}
-		if (!self.flickrAPI.authenticated) {
+		if (!FlickR.sharedInstance.authenticated) {
 			// FlickR API not yet authorized
 			return
 		}
@@ -95,7 +94,7 @@ class ViewController: UICollectionViewController {
 	}
 	
 	func loadImagesFromLocation(location:(Double, Double)) {
-		self.flickrAPI.imageSpecsForLocation(location) { (specs) -> Void in
+		FlickR.sharedInstance.imageSpecsForLocation(location) { (specs) -> Void in
 			self.imageSpecs = specs
 			dispatch_async(dispatch_get_main_queue(), { () -> Void in
 				self.collectionView?.reloadData()
@@ -172,12 +171,19 @@ class ViewController: UICollectionViewController {
 	*/
 	
 	override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-		print("Should perform \(identifier)?")
+		if identifier == "SingleImageSegue" {
+			return true
+		}
+		print("Unrecognized seqgue \(identifier)")
 		return true
 	}
 	
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		print("Prepare for \(segue.identifier)")
+		if let imageVC = segue.destinationViewController as? SingleImageViewController {
+			if let selIndexPath = self.collectionView?.indexPathsForSelectedItems()?.first {
+				imageVC.imageSpec = self.imageSpecs![selIndexPath.row]
+			}
+		}
 	}
 	
 }

@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10072.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -59,6 +60,7 @@
                                 <size key="customSize" width="320" height="320"/>
                                 <connections>
                                     <outlet property="imageView" destination="mKC-ww-ltS" id="0JI-eX-oGs"/>
+                                    <segue destination="27h-xv-epM" kind="show" identifier="SingleImageSegue" id="g5O-kp-EJN"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -75,6 +77,56 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fos-Nf-A9p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1373" y="1109"/>
+        </scene>
+        <!--Single Image View Controller-->
+        <scene sceneID="wu2-fO-aul">
+            <objects>
+                <viewController id="27h-xv-epM" customClass="SingleImageViewController" customModule="RPExercise" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FXC-yw-tHd"/>
+                        <viewControllerLayoutGuide type="bottom" id="WUN-bb-fBg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yZ7-F6-WWO">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s0f-yf-0bg">
+                                <rect key="frame" x="134" y="64" width="500" height="500"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="500" id="TlM-5p-a5F"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="500" id="fyr-2Q-Amu"/>
+                                </constraints>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7JQ-Ve-yJQ">
+                                <rect key="frame" x="20" y="572" width="728" height="432"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="432" id="gP6-gl-UYy"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="s0f-yf-0bg" firstAttribute="top" secondItem="FXC-yw-tHd" secondAttribute="bottom" id="2Bo-tp-6iH"/>
+                            <constraint firstItem="s0f-yf-0bg" firstAttribute="centerX" secondItem="yZ7-F6-WWO" secondAttribute="centerX" id="2H2-M4-Y3L"/>
+                            <constraint firstAttribute="bottom" secondItem="7JQ-Ve-yJQ" secondAttribute="bottom" constant="20" symbolic="YES" id="4Dg-wC-Zif"/>
+                            <constraint firstItem="7JQ-Ve-yJQ" firstAttribute="leading" secondItem="yZ7-F6-WWO" secondAttribute="leadingMargin" id="4Vg-gi-UkY"/>
+                            <constraint firstItem="7JQ-Ve-yJQ" firstAttribute="centerX" secondItem="s0f-yf-0bg" secondAttribute="centerX" id="i27-Z4-J97"/>
+                            <constraint firstItem="7JQ-Ve-yJQ" firstAttribute="top" secondItem="s0f-yf-0bg" secondAttribute="bottom" constant="8" symbolic="YES" id="vTQ-Bi-gDk"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
+                    <connections>
+                        <outlet property="imageView" destination="s0f-yf-0bg" id="9ar-lo-kjC"/>
+                        <outlet property="textView" destination="7JQ-Ve-yJQ" id="1uj-l9-uk7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y3g-kX-pXl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2271" y="1109"/>
         </scene>
     </scenes>
 </document>

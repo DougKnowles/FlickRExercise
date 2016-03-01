@@ -11,6 +11,8 @@ import OAuthSwift
 
 public class FlickR {
 	
+	static let sharedInstance = FlickR()
+	
 	public var authenticated : Bool
 	
 	let api_key = "4b6a291a5e6c2d7253500fa094cfca11"
@@ -93,7 +95,6 @@ public class FlickR {
 				guard let jsonObj : AnyObject = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()),
 					let jsonDict = jsonObj as? [String: AnyObject],
 					let photosResult = jsonDict["photos"] as? [String: AnyObject],
-					let total : Int = Int(photosResult["total"] as! String),
 					let photos = photosResult["photo"] as? [[String: AnyObject]]
 				else {
 					print( "Failed to convert response JSON to object")
