@@ -47,8 +47,10 @@ public class FlickRImage {
 		}
 		// TODO: construct a custom NSURLSession to be shared for image loading, to allow for finer control
 		// TODO: handle overlapping requests for same image
+		let request = NSMutableURLRequest.init(URL: url)
+		request.timeoutInterval = large ? 240 : 60
 		let urlSession = NSURLSession.sharedSession()
-		let imageTask = urlSession.dataTaskWithURL(url) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+		let imageTask = urlSession.dataTaskWithRequest(request) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
 			if error != nil {
 				print( "Error loading image: \(error!.localizedDescription)" )
 				completion(image: nil)
